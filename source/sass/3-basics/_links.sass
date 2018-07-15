@@ -1,0 +1,27 @@
+// Indicators ==================================================================
+
+.close
+  text-decoration: none
+  opacity: 0.4
+  &:hover,
+  &:focus
+    opacity: 1
+.badge
+  &-secondary,
+  &-warning
+    color: #fff
+.alert
+  border: none
+  color: $white
+  a,
+  .alert-link
+    color: #fff
+    text-decoration: underline
+  //@each $color, $value in $theme-colors
+  //  &-#{$color}
+  //    background-color: $value
+  //&-light
+  //  &,
+  //  & a,
+  //  & .alert-link
+  //    color: $body-color
