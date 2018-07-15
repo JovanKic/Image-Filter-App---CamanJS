@@ -79,7 +79,12 @@ document.addEventListener('click', function(e) {
         }
     }
 });
-
+//Remove Changes
+revertBtn.addEventListener('click', function(e) {
+    Caman('#canvas', img, function() {
+        this.revert();
+    });
+});
 //Upload File
 uploadFile.addEventListener('change', function(e) {
     //Get File
@@ -108,3 +113,30 @@ uploadFile.addEventListener('change', function(e) {
         }
     }, false);
 });
+//Download Event
+downloadBtn.addEventListener('click', function(e) {
+    //Get file extension
+    var fileExtension = fileName.slice(-4);
+    //Initialize new file name variable
+    var newFileName;
+    //Check image type
+    if(fileExtension === '.jpg' || fileExtension === '.png') {
+        newFileName = fileName.substring(0, fileName.length-4) + 'edited.jpg';
+    }
+    //Call download function
+    download(canvas, newFileName);
+});
+//Download function
+function download(canvas, filename) {
+    //Init event
+    var e;
+    //Create link
+    var link = document.createElement('a');
+    //Set properties
+    link.download = filename;
+    link.href = canvas.toDataURL('image/jpeg', 0.8);
+    //New mouse event
+    e = new MouseEvent('click');
+    //Dispatch event
+    link.dispatchEvent(e);
+}
